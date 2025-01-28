@@ -1,25 +1,12 @@
 import { useState } from "react";
-import { fetchHumanizedText } from "./api/api";
-import { humanize } from "./utils/humanize";
 
 function App() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!input.trim()) return;
-    setLoading(true);
-
-    try {
-      const prompt = humanize(input);
-      const response = await fetchHumanizedText(prompt);
-      setResult(response);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+    setResult("Humanized result will appear here.");
   };
 
   return (
@@ -29,9 +16,7 @@ function App() {
         onChange={(e) => setInput(e.target.value)}
         placeholder="Enter text to humanize..."
       />
-      <button onClick={handleSubmit} disabled={loading}>
-        {loading ? "Processing..." : "Humanize"}
-      </button>
+      <button onClick={handleSubmit}>Humanize</button>
       {result && <p>{result}</p>}
     </div>
   );
