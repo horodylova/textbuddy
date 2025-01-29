@@ -21,7 +21,7 @@ Webside lives [here](https://textbuddy-fawn.vercel.app/)
 - Responsive design principles
 
 ### Backend
-The backend repository can be found at [textbuddy-api](https://github.com/horodylova/textbuddy-api)
+The backend repository can be found at [textbuddy-api](https://github.com/horodylova/textbuddy)
 
 ## Getting Started
 
