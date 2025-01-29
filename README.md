@@ -45,7 +45,7 @@ npm install
 
 3. Create a `.env` file in the root directory and add your backend API URL:
 ```
-REACT_APP_API_URL=your deployed backend URL
+VITE_API_URL=your deployed backend URL
 ```
 
 4. Start the development server:
