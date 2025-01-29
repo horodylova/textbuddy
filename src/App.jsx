@@ -1,23 +1,10 @@
-import { useState } from "react";
+import TextForm from './components/TextForm/TextForm';
 
 function App() {
-  const [input, setInput] = useState("");
-  const [result, setResult] = useState("");
-
-  const handleSubmit = () => {
-    if (!input.trim()) return;
-    setResult("Humanized result will appear here.");
-  };
-
   return (
     <div>
-      <textarea
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter text to humanize..."
-      />
-      <button onClick={handleSubmit}>Humanize</button>
-      {result && <p>{result}</p>}
+      <h1>Text Humanizer</h1>
+      <TextForm />
     </div>
   );
 }
