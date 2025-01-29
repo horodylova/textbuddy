@@ -34,7 +34,7 @@ The backend repository can be found at [textbuddy-api](https://github.com/horody
 
 1. Clone the repository:
 ```bash
-git clone  https://github.com/horodylova/textbuddy-api
+git clone  https://github.com/horodylova/textbuddy
 ```
 
 2. Install dependencies:
