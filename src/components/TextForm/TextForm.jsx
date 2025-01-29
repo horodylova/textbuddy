@@ -1,45 +1,95 @@
 import { useState } from 'react';
 import humanizeText from '../../services/api';
-import ResultText from '../ResultText/ResultText';
+
+import {
+  FormContainer,
+  FormSection,
+  StyledForm,
+  TextArea,
+  SubmitButton,
+  ResultContainer,
+  SectionTitle,
+  ResultText,
+  ResultHeader,
+  CopyButton,
+  CopyIcon,
+  ResultMessage
+} from './TextForm.styled';
 
 const TextForm = () => {
-  const [input, setInput] = useState('');
+  const [text, setText] = useState('');
   const [result, setResult] = useState('');
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
-  const handleSubmit = async () => {
-    if (!input.trim()) return;
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
-    setError('');
-
+    
     try {
-      const humanizedText = await humanizeText(input);
+      const humanizedText = await humanizeText(text);
       setResult(humanizedText);
+      setIsCopied(false);  
     } catch (error) {
-      setError(error.message);
+      console.error('Form submission error:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(result);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);  
+    } catch (err) {
+      console.error('Failed to copy text:', err);
+    }
+  };
+
   return (
-    <div>
-      <textarea
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter text to humanize..."
-      />
-      <button 
-        onClick={handleSubmit}
-        disabled={isLoading || !input.trim()}
-      >
-        {isLoading ? 'Processing...' : 'Humanize'}
-      </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {result && <ResultText text={result} />}
-    </div>
+    <FormContainer>
+      <FormSection>
+        <SectionTitle>Your Text</SectionTitle>
+        <StyledForm onSubmit={handleSubmit}>
+          <TextArea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Enter your text here..."
+          />
+          <SubmitButton 
+            type="submit" 
+            disabled={!text.trim() || isLoading}
+          >
+            {isLoading ? 'Processing...' : 'Humanize Text'}
+          </SubmitButton>
+        </StyledForm>
+      </FormSection>
+      
+      <ResultContainer>
+        <ResultHeader>
+          <SectionTitle>Result</SectionTitle>
+          {result && (
+            <CopyButton
+              onClick={handleCopy}
+              disabled={isLoading || !result}
+            >
+              <CopyIcon />
+              {isCopied ? 'Copied!' : 'Copy'}
+            </CopyButton>
+          )}
+        </ResultHeader>
+        {result ? (
+          <ResultText>{result}</ResultText>
+        ) : (
+          <ResultMessage>
+            {isLoading 
+              ? 'Processing your text...' 
+              : 'Your humanized text will appear here'}
+          </ResultMessage>
+        )}
+      </ResultContainer>
+    </FormContainer>
   );
 };
 
