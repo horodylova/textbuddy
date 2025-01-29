@@ -27,21 +27,20 @@ The backend repository can be found at [textbuddy-api](https://github.com/horody
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- npm or yarn
+- npm 
 - Git
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone [your-repo-url]
+git clone  https://github.com/horodylova/textbuddy-api
 ```
 
 2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
+ 
 ```
 
 3. Create a `.env` file in the root directory and add your backend API URL:
@@ -51,9 +50,8 @@ REACT_APP_API_URL=your deployed backend URL
 
 4. Start the development server:
 ```bash
-npm start
-# or
-yarn start
+npm run dev
+ 
 ```
 
 The application will be available at `http://localhost:3000`
