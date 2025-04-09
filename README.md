@@ -2,6 +2,8 @@
 
 TextBuddy is a full-stack application that helps users improve their text by making it more human-like and natural. Whether you're writing business communications, content for your website, or any other text that needs to sound more personable, TextBuddy can help transform rigid or formal text into a more conversational tone.
 
+TextBuddy offers intelligent suggestions in real time, helping you fine-tune your writing for clarity, tone, and flow. With support for multiple use cases—from emails and blog posts to product descriptions and social media captions—TextBuddy becomes your reliable writing companion. Whether you're a non-native speaker or a seasoned professional, you'll find it easier than ever to connect with your audience in a natural, authentic way.
+
 Webside lives [here](https://textbuddy-fawn.vercel.app/) 
 
 ## Features
